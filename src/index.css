@@ -36,7 +36,14 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) {
 input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   color: white;
 }
-
+.titulo {
+  text-align: center;
+  padding: 0rem 0 1px 0;
+  background-color: #03a9f4;
+}
+.card {
+  color: #007bff;
+}
 .contenedor-form {
   padding: 3rem 0 1px 0;
   background-color: #03a9f4;

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import Clima from "./components/Clima";
 import Error from "./components/Error";
+import Loading from "./components/Loading";
 
 function App() {
   // state del formulario
@@ -66,27 +67,26 @@ function App() {
     componente = true;
   } */
   //const resultadoo = { name: "nuvoso", main: 3434.324 };
+  if (!posicionActual || !resultadoo) return <Loading />;
 
   return (
     <Fragment>
-      <Header titulo="Clima React App" />
+      <Header className="center" titulo="Clima React App" />
 
-      <div className="contenedor-form">
-        <div className="container">
-          <div className="row center">
-            <div className="col m12 s12">
-              <Formulario
-                posicionActual={posicionActual}
-                busqueda={busqueda}
-                guardarBusqueda={guardarBusqueda}
-                guardarConsultar={guardarConsultar}
-              />
-            </div>
+      <div className="container">
+        <div className="row center">
+          <div className="col m12 s12">
+            <Formulario
+              posicionActual={posicionActual}
+              busqueda={busqueda}
+              guardarBusqueda={guardarBusqueda}
+              guardarConsultar={guardarConsultar}
+            />
           </div>
           <div className="row">
             <div className="contenedor-climas">
               {error ? (
-                <Error mensaje="No hay resultados" />
+                <Error mensaje="No hay os" />
               ) : (
                 resultadoo.list !== undefined &&
                 resultadoo.list.map((item) => (

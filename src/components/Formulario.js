@@ -39,16 +39,19 @@ const Formulario = ({
   };
 
   //console.log("la posicion actual es :" + posicionActual);
-  //if (!posicionActual) return <Loading />;
   return (
     <form onSubmit={handleSubmit}>
+      {error ? <Error mensaje="Es obligatorio ingresar una ciudad" /> : null}
+
       <div className="input-field col s12">
+        <label htmlFor="ciudad">Ciudad: </label>
         <select
+          class="form-control"
           name="ciudad"
           id="ciudad"
-          value={ciudad}
           onChange={handleChange}
         >
+          <option value="">-- Seleccione una Ciudad --</option>
           <option value={posicionActual}>{posicionActual}</option>
           <option value="París">París</option>
           <option value="Istambul">Istambul</option>
@@ -57,14 +60,13 @@ const Formulario = ({
           <option value="wuhan">wuhan</option>
           <option value="cartagena">cartagena</option>
         </select>
-        <label htmlFor="ciudad">Ciudad: </label>
       </div>
 
       <div className="input-field col s12">
         <input
           type="submit"
           value="Buscar Clima"
-          className=" btn-large btn-block yellow accent-4"
+          className="mb-2 mt-5 btn btn-info btn-block yellow accent-4"
         />
       </div>
     </form>

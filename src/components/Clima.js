@@ -13,7 +13,7 @@ const Clima = (props) => {
   console.log(main);
 
   return (
-    <div className="card-panel white">
+    <div class="card">
       <div className="black-text">
         {/*  <h2>El clima de {name} es: </h2> */}
         <p className="temperatura">{main.weather[0].main}</p>
