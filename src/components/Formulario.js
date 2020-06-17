@@ -54,10 +54,10 @@ const Formulario = ({
           <option value={posicionActual}>{posicionActual}</option>
           <option value="París">París</option>
           <option value="Istambul">Istambul</option>
-          <option value="beirut">beirut</option>
+          <option value="Beirut">Beirut</option>
           <option value="Venecia">Venecia</option>
-          <option value="wuhan">wuhan</option>
-          <option value="cartagena">cartagena</option>
+          <option value="Wuhan">Wuhan</option>
+          <option value="Cartagena">Cartagena</option>
         </select>
       </div>
 
