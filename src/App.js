@@ -20,18 +20,10 @@ function App() {
   useEffect(() => {
     const consultarAPI = async () => {
       if (consultar) {
-        /*         const appId = "b5dc8424fefb0568753fc06c8be1b7ad";
-         */ //    const url = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&&appid=${process.env.REACT_APP_ACCESS_KEY}`;
-
-        /*  https://api.openweathermap.org/data/2.5/forecast?q=Istambul&units=metric&appid=b5dc8424fefb0568753fc06c8be1b7ad
-        https://api.openweathermap.org/data/2.5/forecast/daily?q=Istambul&units=metric&&appid=ed7b34986576a0b179ebbcefd31ade9a
- */
-
         const url = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${ciudad}&units=metric&&appid=${process.env.REACT_APP_ACCESS_KEY}`;
 
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
-        console.log(resultado);
 
         guardarConsultar(false);
 
@@ -57,47 +49,38 @@ function App() {
     };
     fetchData();
     consultarAPI();
+
     // eslint-disable-next-line
   }, [consultar]);
 
-  /*  let componente;
-  if (error) {
-    componente = <Error mensaje="No hay resultados" />;
-  } else {
-    componente = true;
-  } */
-  //const resultadoo = { name: "nuvoso", main: 3434.324 };
   if (!posicionActual || !resultadoo) return <Loading />;
 
   return (
     <Fragment>
-      <Header className="center" titulo="Clima React App" />
+      <Header titulo="Clima React App" />
 
       <div className="container">
-        <div className="row center">
+        <div className="row">
           <div className="col m12 s12">
             <Formulario
               posicionActual={posicionActual}
               busqueda={busqueda}
               guardarBusqueda={guardarBusqueda}
               guardarConsultar={guardarConsultar}
+              guardarResultado={guardarResultado}
             />
           </div>
-          <div className="row">
-            <div className="contenedor-climas">
-              {error ? (
-                <Error mensaje="No hay os" />
-              ) : (
-                resultadoo.list !== undefined &&
-                resultadoo.list.map((item) => (
-                  <Clima
-                    /* key={item.city.id}  */ resultado={item}
-                    name={ciudad}
-                  />
-                ))
-              )}
-            </div>
-            {/* <div className="col m6 s12">{componente}</div> */}
+        </div>
+        <div className="row">
+          <div className="col m12 s12 contenedor-climas">
+            {error ? (
+              <Error mensaje="No hay datos" />
+            ) : (
+              resultadoo.list !== undefined &&
+              resultadoo.list.map((item) => (
+                <Clima key={item.dt} resultado={item} name={ciudad} />
+              ))
+            )}
           </div>
         </div>
       </div>

@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import Error from "./Error";
 import PropTypes from "prop-types";
-//import Loading from "./Loading.js";
-
-//const [posicionActual, guardarPosicionActual] = useState(null);
 
 const Formulario = ({
   busqueda,
   guardarBusqueda,
   guardarConsultar,
   posicionActual,
+
+  guardarResultado,
 }) => {
   const [error, guardarError] = useState(false);
 
   // extraer ciudad
   const { ciudad } = busqueda;
-  //const { posicionActual } = posicionActual;
 
   const handleChange = (e) => {
     // actualizar el state
@@ -30,6 +28,8 @@ const Formulario = ({
     // validar
     if (ciudad.trim() === "") {
       guardarError(true);
+      guardarConsultar(false);
+      guardarResultado({});
       return;
     }
 
@@ -38,7 +38,6 @@ const Formulario = ({
     guardarConsultar(true);
   };
 
-  //console.log("la posicion actual es :" + posicionActual);
   return (
     <form onSubmit={handleSubmit}>
       {error ? <Error mensaje="Es obligatorio ingresar una ciudad" /> : null}
@@ -46,7 +45,7 @@ const Formulario = ({
       <div className="input-field col s12">
         <label htmlFor="ciudad">Ciudad: </label>
         <select
-          class="form-control"
+          className="form-control"
           name="ciudad"
           id="ciudad"
           onChange={handleChange}
@@ -77,7 +76,8 @@ Formulario.propTypes = {
   busqueda: PropTypes.object.isRequired,
   guardarBusqueda: PropTypes.func.isRequired,
   guardarConsultar: PropTypes.func.isRequired,
-  posicionActual: PropTypes.object.isRequired,
+  posicionActual: PropTypes.string.isRequired,
+  guardarResultado: PropTypes.func.isRequired,
 };
 
 export default Formulario;
